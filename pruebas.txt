@@ -1,0 +1,62 @@
+register: POST
+
+http://localhost:8081/api/users/register
+
+{
+  "name": "Ana",
+  "lastname": "Torres",
+  "email": "ana@smartlogix.cl",
+  "password": "123456",
+  "phone": "+56912345678",
+  "address": "Santiago, Chile"
+}
+
+------------------------------------------------------------
+
+
+login: POST
+
+http://localhost:8081/api/users/login
+
+{
+  "email": "ana@smartlogix.cl",
+  "password": "123456"
+}
+
+
+-------------------------------------------------------------
+
+
+Prueba /me 
+
+GET: http://localhost:8081/api/users/me
+
+Header:
+
+Authorization: Bearer TOKEN DEL USUARIO
+
+
+--------------------------------------------------------------
+
+PRUEBAS singleton
+
+GET: http://localhost:8081/api/users/session-info
+
+Header:
+
+Authorization: Bearer TOKEN DEL USUARIO
+
+si se llama varias veces el hash debe mantenerse igual mientras la app siga corriendo,
+si es así se demuestra que se usa la misma instancia.
+
+
+--------------------------------------------------------------
+
+
+Logout
+
+POST: http://localhost:8081/api/users/logout 
+
+si hacemos la prueba /me luego de usar logout, ya decir Unautgorized, si lo hace
+se demuestra que ya no esta la sesión activa en SessionManager
+
